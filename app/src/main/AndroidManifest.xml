@@ -17,13 +17,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Medicine"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashScreen"/>
         <activity android:name=".Barcode" />
         <activity android:name=".EmergencyActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".LoginAct" />
         <activity android:name=".Details" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
