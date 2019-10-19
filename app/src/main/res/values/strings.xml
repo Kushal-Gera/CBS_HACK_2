@@ -3,4 +3,12 @@
     <string name="camera_permission_confirmation">This app demonstrates the usage of CameraView. In order to do that, it needs permission to access camera.</string>
     <string name="camera_permission_not_granted">Camera app cannot do anything without camera permission.</string>
     <string name="picture_taken">Picture taken</string>
+    <string name="description">description</string>
+    <string name="your_name">Your Name*</string>
+    <string name="your_age">Your Age*</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="save_now">Save Now</string>
+    <string name="phone_number">Phone Number*</string>
+    <string name="enter_otp">Enter OTP</string>
 </resources>

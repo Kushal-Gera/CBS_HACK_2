@@ -5,6 +5,11 @@
     android:id="@+id/layout"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
