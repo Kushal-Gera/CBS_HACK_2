@@ -10,11 +10,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    aaptOptions {
+        noCompress "tflite"
     }
 }
 
@@ -25,4 +32,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.github.google:cameraview:68947cc164'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation "com.microsoft.azure.maps:mapcontrol:0.2"
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    implementation 'com.google.firebase:firebase-ml-vision:23.0.0'
+    implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.1'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
 }
+apply plugin: 'com.google.gms.google-services'
