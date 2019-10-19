@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/medicine"
+        android:icon="@drawable/camera"
+        android:title="@string/scan_medicine" />
+
+    <item
+        android:id="@+id/qr_scan"
+        android:icon="@drawable/camera_qr"
+        android:title="@string/scan_qr" />
+</menu>
