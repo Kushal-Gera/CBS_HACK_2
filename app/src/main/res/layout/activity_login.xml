@@ -11,30 +11,16 @@
     <ImageView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main"
         android:elevation="0dp"
-        android:paddingTop="20dp"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorAccent"
-        android:elevation="0dp"
-        android:gravity="center"
-        android:text="Please Login To Proceed"
-        android:textColor="@color/white"
-        android:textSize="28sp" />
+        android:paddingTop="50dp"
+        android:contentDescription="@string/description" />
 
     <LinearLayout
         android:id="@+id/ll1"
@@ -44,7 +30,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
         android:orientation="horizontal">
 
@@ -138,7 +124,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/heart"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_below="@+id/ll2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -161,6 +147,7 @@
         android:background="@drawable/save_now_bg"
         android:gravity="center"
         android:text="login"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".Medicine">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/heart"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="10dp"

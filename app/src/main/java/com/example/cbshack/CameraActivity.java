@@ -51,7 +51,6 @@ public class CameraActivity extends AppCompatActivity implements ActivityCompat.
                 case R.id.take_picture:
                     if (mCameraView != null) {
                         mCameraView.takePicture();
-
                     }
                     break;
             }
@@ -177,8 +176,7 @@ public class CameraActivity extends AppCompatActivity implements ActivityCompat.
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     Intent fp ;
                     if (bool)
                         fp=new Intent(getApplicationContext(),Barcode.class);
@@ -186,6 +184,7 @@ public class CameraActivity extends AppCompatActivity implements ActivityCompat.
                         fp=new Intent(getApplicationContext(),Medicine.class);
                     startActivity(fp,
                             ActivityOptions.makeSceneTransitionAnimation(CameraActivity.this).toBundle());
+                    finish();
                 }
             }, 100);
         }

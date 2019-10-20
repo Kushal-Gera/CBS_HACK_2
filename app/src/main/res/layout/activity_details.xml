@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ededed"
+    android:background="#FFE5C0"
     android:orientation="vertical"
     tools:context=".Details">
 
@@ -14,15 +14,17 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Let's Get Started !!!"
-        android:textColor="#000"
+        android:textColor="@color/bold_color"
+        android:textStyle="bold"
         android:textSize="30sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="serif-monospace"
         android:text="Help Us Know You Better"
-        android:textColor="#555"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <LinearLayout
