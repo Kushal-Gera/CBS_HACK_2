@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#EE534F</color>
 
-    <color name="background">#FFE5C0</color>
+    <color name="background">#FFF2E1</color>
 
     <color name="hint_color">#555</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
-    <color name="bold_color">#4BED56</color>
+    <color name="bold_color">#F9B121</color>
 
 
 </resources>

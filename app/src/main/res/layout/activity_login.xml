@@ -9,10 +9,9 @@
     tools:context=".LoginAct">
 
     <ImageView
-        android:id="@+id/animation_view"
+        android:id="@+id/image_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -26,10 +25,10 @@
         android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/animation_view"
+        android:layout_below="@+id/image_view"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
         android:orientation="horizontal">
@@ -77,8 +76,8 @@
         android:layout_below="@+id/ll1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -138,7 +137,7 @@
     <Button
         android:id="@+id/login_btn"
         android:layout_width="200dp"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/heart"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -146,8 +145,8 @@
         android:layout_marginEnd="50dp"
         android:background="@drawable/save_now_bg"
         android:gravity="center"
-        android:text="login"
-        android:textColor="@color/black"
+        android:text="@string/login"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
     <Button
@@ -161,7 +160,7 @@
         android:layout_marginEnd="50dp"
         android:textColor="@color/white"
         android:background="@drawable/save_now_bg"
-        android:text="get_code"
+        android:text="get Code"
         android:textSize="20sp" />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -37,6 +38,8 @@ public class LoginAct extends AppCompatActivity {
     Button login, getCode;
     LottieAnimationView heart;
 
+    ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class LoginAct extends AppCompatActivity {
             finish();
         }
 
+        imageView = findViewById(R.id.image_view);
         phone = findViewById(R.id.phone);
         otp = findViewById(R.id.otp);
         getCode = findViewById(R.id.getCode);
@@ -63,34 +67,32 @@ public class LoginAct extends AppCompatActivity {
         otp.setAnimation(anim);
         phone.setAnimation(anim);
 
-        getCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        getCode.setOnClickListener(v -> {
 
-                String number = phone.getEditText().getText().toString().trim();
+            String number = phone.getEditText().getText().toString().trim();
 
-                if (!TextUtils.isEmpty(number) && number.length() > 9) {
+            if (!TextUtils.isEmpty(number) && number.length() > 9) {
 
-                    getVerificationCode('+' + "91" + number);
+                getVerificationCode('+' + "91" + number);
 
-                    heart.setVisibility(View.VISIBLE);
-                    login.setVisibility(View.VISIBLE);
-                    getCode.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    phone.setError("Phone Number Required");
-                }
+                heart.setVisibility(View.VISIBLE);
+                login.setVisibility(View.VISIBLE);
+                getCode.setVisibility(View.INVISIBLE);
+            }
+            else {
+                phone.setError("Phone Number Required");
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginAct.this, "Logging in...", Toast.LENGTH_SHORT).show();
-                String userCode = otp.getEditText().getText().toString().trim();
-                if (!TextUtils.isEmpty(userCode))
-                    verifyCode(userCode);
+        login.setOnClickListener(v -> {
+            if (TextUtils.isEmpty(otp.getEditText().getText())){
+                otp.setError("Can't Be Empty");
+                return;
             }
+            Toast.makeText(LoginAct.this, "Logging in...", Toast.LENGTH_SHORT).show();
+            String userCode = otp.getEditText().getText().toString().trim();
+            if (!TextUtils.isEmpty(userCode))
+                verifyCode(userCode);
         });
 
 

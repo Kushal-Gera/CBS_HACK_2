@@ -3,74 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
-    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
+        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/save_now_bg"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="180dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:text="Appointments"
-            android:textColor="@color/black"
-            android:textSize="20dp"
+            android:text="@string/your_dashboard"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:textStyle="bold"
             tools:ignore="SpUsage" />
 
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="60dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Medicines"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            tools:ignore="SpUsage" />
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/save_now_bg_3"
+                android:gravity="center"
+                android:text="@string/appointments"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                tools:ignore="SpUsage" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/save_now_bg_3"
+                android:gravity="center"
+                android:text="@string/medicines"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                tools:ignore="SpUsage" />
 
-        <TextView
-            android:layout_width="180dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="20/21/1293"
-            android:textColor="@color/hint_color"
-            android:textSize="18dp"
-            tools:ignore="SpUsage" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="5 left"
-            android:textColor="#444"
-            android:textSize="18dp"
-            tools:ignore="SpUsage" />
+            <TextView
+                android:id="@+id/appointmnt"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:text="23/23/1999"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/med_left"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="5 Left"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -89,9 +125,20 @@
         android:id="@+id/fab1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="120dp"
         android:src="@drawable/qricon"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logout"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -100,8 +147,8 @@
         android:id="@+id/fab2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="100dp"
         android:clickable="true"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"

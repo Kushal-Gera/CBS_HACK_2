@@ -11,4 +11,8 @@
     <string name="save_now">Save Now</string>
     <string name="phone_number">Enter Phone Number</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="login">Login</string>
+    <string name="appointments">Appointments</string>
+    <string name="medicines">Medicines</string>
+    <string name="your_dashboard">Your Dashboard</string>
 </resources>
