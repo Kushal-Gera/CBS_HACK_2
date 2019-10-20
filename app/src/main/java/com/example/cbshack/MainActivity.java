@@ -19,8 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     FloatingActionButton fab, fab1, fab2, fab3;
     boolean hidden = true;
 
+    LottieAnimationView load;
+
     RecyclerView recycler_view;
     FirebaseAuth auth;
     DatabaseReference my_ref;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         recycler_view = findViewById(R.id.recycler_view);
 
+        load = findViewById(R.id.load);
         fab = findViewById(R.id.fab);
         fab1 = findViewById(R.id.fab1);
         fab2 = findViewById(R.id.fab2);
@@ -136,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         my_ref = FirebaseDatabase.getInstance().getReference().child("Patient")
                 .child(auth.getCurrentUser().getUid()).child("Medicines");
 
+
         options = new FirebaseRecyclerOptions.Builder<Each_item>()
                 .setQuery(my_ref, Each_item.class).build();
 
@@ -151,6 +157,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 my_ref.child(node_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        recycler_view.setVisibility(View.VISIBLE);
+                        load.setVisibility(View.INVISIBLE);
 
                         holder.title.setText(dataSnapshot.getValue().toString());
 
@@ -172,11 +181,27 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             }
 
 
+
+
         };
 
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        recycler_view.setAdapter(adapter);
+        adapter.startListening();
 
 
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
     void setAlarm(int hour){

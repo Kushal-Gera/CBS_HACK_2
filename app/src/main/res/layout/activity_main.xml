@@ -52,7 +52,7 @@
                 android:text="@string/appointments"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20dp"
+                android:textSize="19dp"
                 tools:ignore="SpUsage" />
 
             <TextView
@@ -66,7 +66,7 @@
                 android:text="@string/medicines"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20dp"
+                android:textSize="19dp"
                 tools:ignore="SpUsage" />
 
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:gravity="center"
-                android:text="23/23/1999"
+                android:text="06/23/2019"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
@@ -100,7 +100,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
-                android:text="5 Left"
+                android:text="5 Med. Left"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
@@ -129,10 +129,26 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.09"
         tools:layout_editor_absoluteX="-4dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/load"
+        tools:ignore="RtlSymmetry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.09"
+        tools:layout_editor_absoluteX="-4dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
