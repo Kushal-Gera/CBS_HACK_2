@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
@@ -39,14 +40,14 @@ public class Barcode extends AppCompatActivity {
     final private String FCM_API = "https://fcm.googleapis.com/fcm/send";
     final private String serverKey = "key=" + "AAAATlh_q_s:APA91bFXP4MGfeaFvrZkRpmpqoKJZEcKGSsH-qZlqR7cmkU4-xCtfbJrtByxBrr5MBrNHB7I6cPOH-f7MrjIX0f7iGd_GPvplY6QzidCxnnXU5lGUitZna1-i0IhlSUiJIcvLpio2Aih";
     final private String contentType = "application/json";
-    String mess ;  // TODO FIREBASE .
+    String mess ;
     String TOPIC ;
     public String string = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
-        mess = "kDs4coEWguWkNX8CmnyU6letHub2" ;
+        mess = FirebaseAuth.getInstance().getUid() ;
 
         bitmap = BitmapFactory.decodeFile(String.valueOf(CameraActivity.file));
         txt = findViewById(R.id.textView);
