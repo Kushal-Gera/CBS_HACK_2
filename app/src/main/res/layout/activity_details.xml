@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFE5C0"
     android:orientation="vertical"
     tools:context=".Details">
@@ -15,14 +14,14 @@
         android:gravity="center"
         android:text="Let's Get Started !!!"
         android:textColor="@color/bold_color"
-        android:textStyle="bold"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:fontFamily="serif-monospace"
+        android:gravity="center"
         android:text="Help Us Know You Better"
         android:textColor="#000"
         android:textSize="25sp" />
@@ -82,9 +81,9 @@
             android:layout_gravity="center"
             android:layout_marginStart="17dp"
             android:layout_marginTop="5dp"
-            android:padding="6dp"
             android:layout_marginEnd="15dp"
             android:contentDescription="@string/description"
+            android:padding="6dp"
             android:src="@drawable/age_img" />
 
         <com.google.android.material.textfield.TextInputLayout
