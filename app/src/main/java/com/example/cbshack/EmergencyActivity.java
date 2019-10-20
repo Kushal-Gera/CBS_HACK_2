@@ -1,24 +1,20 @@
 package com.example.cbshack;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
+import com.microsoft.azure.maps.mapcontrol.AzureMap;
 import com.microsoft.azure.maps.mapcontrol.AzureMaps;
 import com.microsoft.azure.maps.mapcontrol.MapControl;
+import com.microsoft.azure.maps.mapcontrol.events.OnReady;
 import com.microsoft.azure.maps.mapcontrol.layer.SymbolLayer;
 import com.microsoft.azure.maps.mapcontrol.source.DataSource;
 
@@ -32,9 +28,9 @@ public class EmergencyActivity extends AppCompatActivity {
         AzureMaps.setSubscriptionKey("_iGvSdHd-lg_xNYPLyE271WrMULE9fF6nm78MJkr-hg");
     }
 
-    private FusedLocationProviderClient fusedLocationClient; ;
+    private FusedLocationProviderClient fusedLocationClient;
     MapControl mapControl;
-    Location loc ;
+    Location loc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +40,14 @@ public class EmergencyActivity extends AppCompatActivity {
         mapControl = findViewById(R.id.mapcontrol);
 
         mapControl.onCreate(savedInstanceState);
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            loc = location ;
+                        if (location != null ) {
+                            loc = location;
                         }
                     }
                 });
@@ -61,7 +56,7 @@ public class EmergencyActivity extends AppCompatActivity {
         //Wait until the map resources are ready.
         mapControl.onReady(map -> {
             //Add your post map load code here.
-            map.setCamera(center(loc.getLatitude() , loc.getLongitude() ), zoom(12.5));
+            map.setCamera(center(loc.getLatitude(), loc.getLongitude()), zoom(12.5));
 
             //Create a data source and add it to the map.
             DataSource dataSource = new DataSource();
@@ -86,7 +81,7 @@ public class EmergencyActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         mapControl.onStart();
     }
@@ -120,4 +115,6 @@ public class EmergencyActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         mapControl.onSaveInstanceState(outState);
     }
+
+
 }

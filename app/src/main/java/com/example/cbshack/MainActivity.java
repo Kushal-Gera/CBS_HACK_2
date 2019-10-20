@@ -1,6 +1,5 @@
 package com.example.cbshack;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -22,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     long cu, cene;
     int counter = 1;
 
-    TextView sout;
-    FloatingActionButton fab , fab1 , fab2 ;
+    TextView signOut;
+    FloatingActionButton fab, fab1, fab2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +49,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseMessaging.getInstance().subscribeToTopic(FirebaseAuth.getInstance().getUid());
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //qr activity
+                Intent i = new Intent(MainActivity.this, CameraActivity.class);
+                i.putExtra("IS_QR", true);
+                startActivity(i);
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //qr activity
+                Intent i = new Intent(MainActivity.this, CameraActivity.class);
+                i.putExtra("IS_QR", false);
+                startActivity(i);
+            }
+        });
 
 //        findViewById(R.id.sign_out).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -86,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 if (counter == 5) {
                     startActivity(new Intent(getApplicationContext(), EmergencyActivity.class));
                     counter = 1;
-                }
-                else if (counter == 1 || cu < cene + 500) {
+                } else if (counter == 1 || cu < cene + 500) {
                     Log.e("Emergency Counter ", counter + " ");
                     counter++;
                 } else {

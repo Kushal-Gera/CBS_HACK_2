@@ -41,9 +41,8 @@ public class CameraActivity extends AppCompatActivity implements ActivityCompat.
 
     private Handler mBackgroundHandler;
 
-    boolean bool = true ;   // TODO
-    //true - barcode
-    //false - medicine
+    boolean bool;
+
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
@@ -64,6 +63,10 @@ public class CameraActivity extends AppCompatActivity implements ActivityCompat.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        bool = getIntent().getBooleanExtra("IS_QR", true);
+        //true - barcode
+        //false - medicine
 
         mCameraView = findViewById(R.id.camera);
         if (mCameraView != null) {

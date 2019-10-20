@@ -1,12 +1,12 @@
 package com.example.cbshack;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -22,8 +22,9 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this , CameraActivity.class));
+                startActivity(new Intent(SplashScreen.this, LoginAct.class));
+                finish();
             }
-        },1000);
+        }, 1000);
     }
 }
