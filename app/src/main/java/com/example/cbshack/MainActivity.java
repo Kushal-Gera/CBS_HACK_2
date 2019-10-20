@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.AlarmClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +35,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
+    private static final String TAG = "TAG";
     long cu, cene;
     int counter = 1;
 
@@ -39,7 +43,11 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     FloatingActionButton fab, fab1, fab2, fab3;
     boolean hidden = true;
 
-    FirebaseDatabase database;
+    RecyclerView recycler_view;
+    FirebaseAuth auth;
+    DatabaseReference my_ref;
+    FirebaseRecyclerOptions<Each_item> options;
+    FirebaseRecyclerAdapter<Each_item, My_viewHolder> adapter;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -53,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             startActivity(new Intent(this, Details.class));
         }
 
+
+        recycler_view = findViewById(R.id.recycler_view);
 
         fab = findViewById(R.id.fab);
         fab1 = findViewById(R.id.fab1);
@@ -123,53 +133,26 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         ///////////////////////////////////////////////////////////////////////////////////////
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        my_ref = FirebaseDatabase.getInstance().getReference().child("Patient")
+                .child(auth.getCurrentUser().getUid()).child("Medicines");
 
-        options = new FirebaseRecyclerOptions.Builder<BMarkItems>()
-                .setQuery(my_ref, BMarkItems.class).build();
+        options = new FirebaseRecyclerOptions.Builder<Each_item>()
+                .setQuery(my_ref, Each_item.class).build();
 
-        adapter = new FirebaseRecyclerAdapter<BMarkItems, Bm_viewholder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Each_item, My_viewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final Bm_viewholder holder, int i, @NonNull final BMarkItems items) {
+            protected void onBindViewHolder(@NonNull final My_viewHolder holder, int i, @NonNull final Each_item items) {
 
                 final String node_id = getRef(i).getKey();
-                if (node_id == null) return;
-
+                if (node_id == null) {
+                    return;
+                }
+                Toast.makeText(MainActivity.this, "hey"+ node_id, Toast.LENGTH_SHORT).show();
                 my_ref.child(node_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final String link_url = String.valueOf(dataSnapshot.child(LINK).getValue());
-                        final String image_url = String.valueOf(dataSnapshot.child(BM_IMAGE).getValue());
-                        final String title = String.valueOf(dataSnapshot.child(TITLE).getValue());
 
-                        holder.title.setText(title);
-                        pd.dismiss();
-                        Glide.with(holder.bm_image.getContext()).load(image_url)
-                                .centerCrop().placeholder(R.drawable.placeholder).into(holder.bm_image);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link_url)));
-                            }
-                        });
-
-                        holder.cross.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                my_ref.child(node_id).removeValue();
-                            }
-                        });
-
-                        holder.share.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(Intent.ACTION_SEND);
-                                i.setType("text/plain");
-                                i.putExtra(Intent.EXTRA_TEXT, link_url);
-                                startActivity(Intent.createChooser(i, "share via"));
-                            }
-                        });
-
+                        holder.title.setText(dataSnapshot.getValue().toString());
 
                     }
 
@@ -182,15 +165,14 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
             @NonNull
             @Override
-            public Bm_viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bk_mark_list, parent, false);
-                return new Bm_viewholder(view);
+            public My_viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+                return new My_viewHolder(view);
             }
 
 
         };
-
-
 
 
 
