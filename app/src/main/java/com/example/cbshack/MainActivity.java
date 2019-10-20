@@ -23,9 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.bumptech.glide.Glide;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private static final String TAG = "TAG";
     long cu, cene;
     int counter = 1;
+    static TextView txt ;
 
     TextView signOut;
     FloatingActionButton fab, fab1, fab2, fab3;
@@ -50,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     RecyclerView recycler_view;
     FirebaseAuth auth;
     DatabaseReference my_ref;
-    FirebaseRecyclerOptions<Each_item> options;
-    FirebaseRecyclerAdapter<Each_item, My_viewHolder> adapter;
+//    FirebaseRecyclerOptions<Each_item> options;
+//    FirebaseRecyclerAdapter<Each_item, My_viewHolder> adapter;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -59,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        txt = findViewById(R.id.text_view) ;
         SharedPreferences preferences = getSharedPreferences("shared_pref", MODE_PRIVATE);
         boolean is_prev = preferences.getBoolean("is_prev", false);
         if (!is_prev) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         }
 
 
-        recycler_view = findViewById(R.id.recycler_view);
+//        recycler_view = findViewById(R.id.recycler_view);
 
         load = findViewById(R.id.load);
         fab = findViewById(R.id.fab);
@@ -142,67 +142,67 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 .child(auth.getCurrentUser().getUid()).child("Medicines");
 
 
-        options = new FirebaseRecyclerOptions.Builder<Each_item>()
-                .setQuery(my_ref, Each_item.class).build();
-
-        adapter = new FirebaseRecyclerAdapter<Each_item, My_viewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull final My_viewHolder holder, int i, @NonNull final Each_item items) {
-
-                final String node_id = getRef(i).getKey();
-                if (node_id == null) {
-                    return;
-                }
-                Toast.makeText(MainActivity.this, "hey"+ node_id, Toast.LENGTH_SHORT).show();
-                my_ref.child(node_id).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        recycler_view.setVisibility(View.VISIBLE);
-                        load.setVisibility(View.INVISIBLE);
-
-                        holder.title.setText(dataSnapshot.getValue().toString());
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e(TAG, "onCancelled: Error");
-                    }
-                });
-            }
-
-            @NonNull
-            @Override
-            public My_viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
-                return new My_viewHolder(view);
-            }
-
-
-
-
-        };
-
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        recycler_view.setAdapter(adapter);
-        adapter.startListening();
+//        options = new FirebaseRecyclerOptions.Builder<Each_item>()
+//                .setQuery(my_ref, Each_item.class).build();
+//
+//        adapter = new FirebaseRecyclerAdapter<Each_item, My_viewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull final My_viewHolder holder, int i, @NonNull final Each_item items) {
+//
+//                final String node_id = getRef(i).getKey();
+//                if (node_id == null) {
+//                    return;
+//                }
+//                Toast.makeText(MainActivity.this, "hey"+ node_id, Toast.LENGTH_SHORT).show();
+//                my_ref.child(node_id).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                        recycler_view.setVisibility(View.VISIBLE);
+//                        load.setVisibility(View.INVISIBLE);
+//
+//                        holder.title.setText(dataSnapshot.getValue().toString());
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//                        Log.e(TAG, "onCancelled: Error");
+//                    }
+//                });
+//            }
+//
+//            @NonNull
+//            @Override
+//            public My_viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+//                return new My_viewHolder(view);
+//            }
+//
+//
+//
+//
+//        };
+//
+//        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+//        recycler_view.setAdapter(adapter);
+//        adapter.startListening();
 
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        adapter.stopListening();
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
 
     void setAlarm(int hour){
 

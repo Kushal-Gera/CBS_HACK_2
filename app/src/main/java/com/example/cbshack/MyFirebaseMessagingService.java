@@ -22,6 +22,7 @@ import java.util.Random;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private final String ADMIN_CHANNEL_ID = "admin_channel";
+    String mess ;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -63,7 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.googleg_standard_color_18)
                 .setLargeIcon(largeIcon)
                 .setContentTitle(remoteMessage.getData().get("title"))
-                .setContentText(remoteMessage.getData().get("message"))
+                .setContentText("Doctor has updated your Medicine")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getData().get("message")))
                 .setAutoCancel(true)
                 .setSound(notificationSoundUri)
@@ -75,6 +76,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         notificationManager.notify(notificationID, notificationBuilder.build());
+        mess = remoteMessage.getData().get("message") ;
+
+        //TODO ALARMS ;
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+                MainActivity.txt.setText(mess);
+
+
+    }
 }
