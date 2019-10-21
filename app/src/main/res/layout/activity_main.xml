@@ -79,13 +79,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/appointmnt"
+                android:id="@+id/appointment"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:gravity="center"
-                android:text="06/23/2019"
+                android:text="23/10/2019"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
@@ -129,8 +129,8 @@
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.09"
@@ -142,14 +142,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.09"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/load"
         tools:ignore="RtlSymmetry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.09"
-        tools:layout_editor_absoluteX="-4dp"/>
+        tools:layout_editor_absoluteX="-4dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

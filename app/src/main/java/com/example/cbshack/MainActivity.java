@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 fab3.setVisibility(View.INVISIBLE);
             }
             hidden = !hidden;
-
         });
 
         FirebaseMessaging.getInstance().subscribeToTopic(FirebaseAuth.getInstance().getUid());

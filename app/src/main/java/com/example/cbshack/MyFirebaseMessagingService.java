@@ -84,7 +84,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onCreate() {
         super.onCreate();
-                MainActivity.txt.setText(mess);
+        MainActivity.txt.setText(mess);
 
 
     }
